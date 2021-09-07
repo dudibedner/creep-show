@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    background-color: lightgray;
+}
+
+header {
+    background-color: white;
+    padding-top: 16px;
+    margin-bottom: -10px;
+}
+
+.logo {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.main {
+    padding: 14px;
+}
+
+h2 {
+    font-family: Open Sans,-apple-system,blinkmacsystemfont,Segoe UI,roboto,Helvetica Neue,arial,sans-serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 600;
+    margin: 0.6em;
+    color: #159E49;
+}
+
+h3 {
+    font-family: Open Sans,-apple-system,blinkmacsystemfont,Segoe UI,roboto,Helvetica Neue,arial,sans-serif;
+    font-size: 1.56rem;
+    font-weight: 700;
+    margin: 3px 0.6em;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    padding: 12px 12px 12px 64px;
+}
+
+.h-bitcoin {
+    background-image: url("bitcoin_icon.png");
+}
+
+.h-litecoin {
+    background-image: url("litecoin_icon.png");
+}
+
