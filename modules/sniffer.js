@@ -12,21 +12,21 @@ var getMonthlyHighPrice = (symbol) => {
         if(content)
             highestPrices = JSON.parse(content.toString());
 
+        let now = new Date();
+        var period = now.getFullYear() * 100 + now.getMonth() + 1;  // July 2020: 202007
         axios.get(`${stampBaseUrl}/${symbol}usd`).then(response => {
-            let now = new Date();
             if(!highestPrices) {
                 highestPrices = {
-                    period: now.getFullYear() * 100 + now.getMonth() + 1,  // July 2020: 202007
+                    period: period,
                     price: response.data.high
                 };
-
-                fs.writeFileSync(filePath, JSON.stringify(highestPrices));
             }
-            else if(highestPrices.price < response.data.high) {
+            else if(highestPrices.price < response.data.high || highestPrices.period < period) {
                 highestPrices.price = response.data.high;
-                fs.writeFileSync(filePath, JSON.stringify(highestPrices));
+                highestPrices.period = period;
             }
 
+            fs.writeFileSync(filePath, JSON.stringify(highestPrices));
             resolve(highestPrices.price);
         }, message => {
             reject(message);
