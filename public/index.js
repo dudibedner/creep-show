@@ -1,9 +1,12 @@
+var stopSpinner = false;
+var animInterval;
+
 $(document).ready(() => {
     console.log('Hello creep-show!');
 
     $('#hourglass').bind('click', function(e) {
-        var $spinner = $(this);
-        $spinner.addClass('hourglass-animate');
+        startSppiner($(this));
+
         $.ajax({
             type: 'POST',
             url: '/all',
@@ -19,9 +22,21 @@ $(document).ready(() => {
                 console.log(error);
             },
             complete: function(e) {
-                $spinner.removeClass('hourglass-animate');
+                stopSpinner = true;
+                //$spinner.removeClass('hourglass-animate');
             }
         });
     });
-    
 });
+
+var startSppiner = ($spinner) => {
+    $spinner.addClass('hourglass-animate');
+    stopSpinner = false;
+    animInterval = setInterval(() => {
+        console.log('=> sppiner interval()');
+        if(stopSpinner) {
+            $spinner.removeClass('hourglass-animate');
+            clearInterval(animInterval);
+        }
+    }, 1600);
+};

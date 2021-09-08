@@ -21,7 +21,7 @@
     border-color: #fff transparent #fff transparent;
   }
   .hourglass-animate:after {
-    animation: lds-hourglass 1.2s infinite;
+    animation: lds-hourglass 1.6s infinite;
   }
   @keyframes lds-hourglass {
     0% {
