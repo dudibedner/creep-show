@@ -28,8 +28,11 @@ h2 {
 }
 
 h3 {
+    height: 64px;
+    line-height: 64px;
+    vertical-align: middle;
     font-family: Open Sans,-apple-system,blinkmacsystemfont,Segoe UI,roboto,Helvetica Neue,arial,sans-serif;
-    font-size: 1.56rem;
+    font-size: 1.65rem;
     font-weight: 700;
     margin: 3px 0.6em;
     background-repeat: no-repeat;
@@ -37,7 +40,7 @@ h3 {
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
-    padding: 12px 12px 12px 64px;
+    padding-left: 70px;
 }
 
 .h-bitcoin {

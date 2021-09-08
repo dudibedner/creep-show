@@ -17,6 +17,22 @@ fs.writeFile('playground.log', JSON.stringify(ticker), (err) => {
 });
 */
 
+let color = 'blue';
+var testArray = [];
+testArray['black'] = 0;
+testArray['white'] = 255;
+testArray['red'] = 30;
+testArray['blue'] = 60;
+
+console.log(testArray['black']);
+console.log(testArray['white']);
+console.log(testArray['red']);
+console.log(testArray[color]);
+color = undefined;
+console.log(testArray[color]);
+
+
+
 fs.readFile('playground.log', 'utf8', (err, data) => {
     if(err) {
         console.log('Unable to read to playground.log file.');
