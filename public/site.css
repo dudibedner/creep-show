@@ -28,26 +28,30 @@ h2 {
 }
 
 h3 {
-    height: 64px;
-    line-height: 64px;
+    height: 48px;
+    line-height: 48px;
     vertical-align: middle;
     font-family: Open Sans,-apple-system,blinkmacsystemfont,Segoe UI,roboto,Helvetica Neue,arial,sans-serif;
     font-size: 1.65rem;
     font-weight: 700;
-    margin: 3px 0.6em;
+    margin: 5px 0.6em;
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
-    padding-left: 70px;
+    padding-left: 54px;
 }
 
 .h-bitcoin {
-    background-image: url("bitcoin_icon.png");
+    background-image: url("bitcoin_icon-48.png");
 }
 
 .h-litecoin {
-    background-image: url("litecoin_icon.png");
+    background-image: url("litecoin_icon-48.png");
+}
+
+.dark-gray {
+    color: #777;
 }
 

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const axios = require('axios');
-//const { resolve } = require('path');
 const stampBaseUrl = 'https://www.bitstamp.net/api/v2/ticker';
 
 var highPricesBuffer = [];

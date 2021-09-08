@@ -3,6 +3,8 @@ const hbs = require('hbs');
 const fs = require('fs');
 const dateFormat = require('dateformat');
 const sniffer = require('./modules/sniffer');
+const { exception } = require('console');
+const { response } = require('express');
 const port = process.env.PORT || 3000;
 
 var app = express();
@@ -65,6 +67,21 @@ app.get('/', (req, res) => {
     });
 });
 
+app.post('/all', (req, res) => {
+
+    var results = [];
+    sniffer.getCurrentPrice('btc').then((response) => {
+        results[0] = toCurrencty(response);
+        return sniffer.getCurrentPrice('ltc');
+    }).then((response) => {
+        results[1] = toCurrencty(response);
+        res.send(results);
+    }).catch(e => {
+        console.log(e);
+        throw e;
+    });
+});
+
 app.get('/:symbol', (req, res) => {
     sniffer.getCurrentPrice(req.params.symbol).then(response => {
         var data;
@@ -77,8 +94,9 @@ app.get('/:symbol', (req, res) => {
     }, message => {
         console.log(message);
     });
-
 });
+
+
 
 var toCurrencty = (num) => {
     return parseFloat(num).toLocaleString('en-US', { style: 'currency', currency: 'USD'});
