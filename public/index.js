@@ -1,11 +1,25 @@
 var stopSpinner = false;
 var animInterval;
+var hourglassDisable = false;
 
 $(document).ready(() => {
     console.log('Hello creep-show!');
 
     $('#hourglass').bind('click', function(e) {
-        startSppiner($(this));
+        if(hourglassDisable)
+            return;
+
+        hourglassDisable = true;
+        startSppiner($(this), () => {
+            var $hourglassTitle = $('.hourglass-wrapper h2')
+            $hourglassTitle.eq(0).hide();
+            $hourglassTitle.eq(1).text('(01:59)').show();
+            startTimer(118, '#hgTimer', () => {
+                $hourglassTitle.eq(0).show();
+                $hourglassTitle.eq(1).hide();
+                hourglassDisable = false;
+            });
+        });
 
         $.ajax({
             type: 'POST',
@@ -23,13 +37,12 @@ $(document).ready(() => {
             },
             complete: function(e) {
                 stopSpinner = true;
-                //$spinner.removeClass('hourglass-animate');
             }
         });
     });
 });
 
-var startSppiner = ($spinner) => {
+var startSppiner = ($spinner, callback) => {
     $spinner.addClass('hourglass-animate');
     stopSpinner = false;
     animInterval = setInterval(() => {
@@ -37,6 +50,28 @@ var startSppiner = ($spinner) => {
         if(stopSpinner) {
             $spinner.removeClass('hourglass-animate');
             clearInterval(animInterval);
+            if(callback)
+                callback();
         }
     }, 1600);
 };
+
+function startTimer(duration, selector, callback) {
+    var display = document.querySelector(selector);
+    var timer = duration, minutes, seconds;
+    var timerInterval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = `(${minutes}:${seconds})`;
+
+        if (--timer < 0) {
+            clearInterval(timerInterval);
+            if(callback)
+                callback();
+        }
+    }, 1000);
+}

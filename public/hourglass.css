@@ -2,6 +2,9 @@
     margin: 0 14px;
     text-align: right;
 }
+.hourglass-wrapper h2 {
+    display: inline-flex;
+}
 .lds-hourglass {
     /* display: inline-block; */
     float: right;
