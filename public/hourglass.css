@@ -5,6 +5,10 @@
 .hourglass-wrapper h2 {
     display: inline-flex;
 }
+#hgTimer {
+  font-family: 'play', monospace;
+  font-size: 1.6rem; 
+}
 .lds-hourglass {
     /* display: inline-block; */
     float: right;

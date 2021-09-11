@@ -58,17 +58,20 @@ var startSppiner = ($spinner, callback) => {
 
 function startTimer(duration, selector, callback) {
     var display = document.querySelector(selector);
-    var timer = duration, minutes, seconds;
+    var startTime = parseInt(Date.now() / 1000, 10);
+    console.log(startTime);
+
+    var timer, minutes, seconds;
     var timerInterval = setInterval(function () {
+        timer = startTime + duration - parseInt(Date.now() / 1000, 10);
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
         display.textContent = `(${minutes}:${seconds})`;
 
-        if (--timer < 0) {
+        if (timer < 0) {
             clearInterval(timerInterval);
             if(callback)
                 callback();
